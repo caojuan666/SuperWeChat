@@ -66,6 +66,7 @@
         android:layout_height="wrap_content"
         android:text="12424325264"/>
     <Button
+        android:id="@+id/btt_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="註冊"
