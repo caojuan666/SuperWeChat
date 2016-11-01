@@ -2,12 +2,9 @@ package cn.ucai.superwechat.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.AlphaAnimation;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.hyphenate.chat.EMClient;
-import cn.ucai.superwechat.DemoHelper;
+import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.R;
 
 /**
@@ -23,13 +20,13 @@ public class SplashActivity extends BaseActivity {
 		setContentView(R.layout.em_activity_splash);
 		super.onCreate(arg0);
 
-		RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.splash_root);
-		TextView versionText = (TextView) findViewById(R.id.tv_version);
-
-		versionText.setText(getVersion());
-		AlphaAnimation animation = new AlphaAnimation(0.3f, 1.0f);
-		animation.setDuration(1500);
-		rootLayout.startAnimation(animation);
+//		RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.splash_root);
+//		TextView versionText = (TextView) findViewById(R.id.tv_version);
+//
+//		versionText.setText(getVersion());
+//		AlphaAnimation animation = new AlphaAnimation(0.3f, 1.0f);
+//		animation.setDuration(1500);
+//		rootLayout.startAnimation(animation);
 	}
 
 	@Override
@@ -38,7 +35,7 @@ public class SplashActivity extends BaseActivity {
 
 		new Thread(new Runnable() {
 			public void run() {
-				if (DemoHelper.getInstance().isLoggedIn()) {
+				if (SuperWeChatHelper.getInstance().isLoggedIn()) {
 					// auto login mode, make sure all group and conversation is loaed before enter the main screen
 					long start = System.currentTimeMillis();
 					EMClient.getInstance().groupManager().loadAllGroups();
