@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import com.bumptech.glide.Glide;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
-import cn.ucai.superwechat.DemoHelper;
+import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.R;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
@@ -75,16 +75,19 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 			iconRightArrow.setVisibility(View.INVISIBLE);
 		}
 		if(username != null){
-    		if (username.equals(EMClient.getInstance().getCurrentUser())) {
-    			tvUsername.setText(EMClient.getInstance().getCurrentUser());
-    			EaseUserUtils.setUserNick(username, tvNickName);
-                EaseUserUtils.setUserAvatar(this, username, headAvatar);
-    		} else {
-    			tvUsername.setText(username);
-    			EaseUserUtils.setUserNick(username, tvNickName);
-    			EaseUserUtils.setUserAvatar(this, username, headAvatar);
-    			asyncFetchUserInfo(username);
-    		}
+//    		if (username.equals(EMClient.getInstance().getCurrentUser())) {
+//    			tvUsername.setText(EMClient.getInstance().getCurrentUser());
+//    			EaseUserUtils.setUserNick(username, tvNickName);
+//                EaseUserUtils.setUserAvatar(this, username, headAvatar);
+//    		} else {
+//    			tvUsername.setText(username);
+//    			EaseUserUtils.setUserNick(username, tvNickName);
+//    			EaseUserUtils.setUserAvatar(this, username, headAvatar);
+//    			asyncFetchUserInfo(username);
+//    		}
+				tvUsername.setText(username);
+    			EaseUserUtils.setAppUserNick(username, tvNickName);
+    			EaseUserUtils.setAppUserAvatar(this, username, headAvatar);
 		}
 	}
 
@@ -117,12 +120,12 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	}
 	
 	public void asyncFetchUserInfo(String username){
-		DemoHelper.getInstance().getUserProfileManager().asyncGetUserInfo(username, new EMValueCallBack<EaseUser>() {
+		SuperWeChatHelper.getInstance().getUserProfileManager().asyncGetUserInfo(username, new EMValueCallBack<EaseUser>() {
 			
 			@Override
 			public void onSuccess(EaseUser user) {
 				if (user != null) {
-				    DemoHelper.getInstance().saveContact(user);
+				    SuperWeChatHelper.getInstance().saveContact(user);
 				    if(isFinishing()){
 				        return;
 				    }
@@ -177,7 +180,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
 			@Override
 			public void run() {
-				boolean updatenick = DemoHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(nickName);
+				boolean updatenick = SuperWeChatHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(nickName);
 				if (UserProfileActivity.this.isFinishing()) {
 					return;
 				}
@@ -259,7 +262,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
 			@Override
 			public void run() {
-				final String avatarUrl = DemoHelper.getInstance().getUserProfileManager().uploadUserAvatar(data);
+				final String avatarUrl = SuperWeChatHelper.getInstance().getUserProfileManager().uploadUserAvatar(data);
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {

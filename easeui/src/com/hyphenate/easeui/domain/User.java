@@ -1,5 +1,7 @@
 package com.hyphenate.easeui.domain;
 
+import com.hyphenate.easeui.utils.EaseCommonUtils;
+
 import java.io.Serializable;
 
 
@@ -16,7 +18,8 @@ public class User implements Serializable {
 	 * initial letter for nickname
 	 */
 	protected String initialLetter;
-	
+	private String avatar;
+
 	public User() {
 		super();
 	}
@@ -90,7 +93,7 @@ public class User implements Serializable {
 	}
 
 	public String getMAvatarSuffix() {
-		return mavatarSuffix;
+		return mavatarSuffix==null?".jpg":mavatarSuffix;
 	}
 
 //	public String getInitialLetter() {
@@ -109,5 +112,21 @@ public class User implements Serializable {
 		return "UserAvatar [muserName=" + muserName + ", muserNick=" + muserNick + ", mavatarId=" + mavatarId
 				+ ", mavatarPath=" + mavatarPath + ", mavatarSuffix=" + mavatarSuffix + ", mavatarType=" + mavatarType
 				+ ", mavatarLastUpdateTime=" + mavatarLastUpdateTime + "]";
+	}
+
+	public String getInitialLetter() {
+		if(initialLetter == null){
+			EaseCommonUtils.setAppUserInitialLetter(this);
+		}
+		return initialLetter;
+	}
+
+	public void setInitialLetter(String initialLetter) {
+		this.initialLetter = initialLetter;
+	}
+//在这时,getMAvatarSuffix有可能为空
+	public String getAvatar() {
+		String path = "http://101.251.196.90:8000/SuperWeChatServerV2.0/downloadAvatar?name_or_hxid="+getMUserName()+"&avatarType=user_avatar&m_avatar_suffix="+getMAvatarSuffix()+"&width=200&height=200\n";
+		return path;
 	}
 }
