@@ -29,14 +29,15 @@
         android:visibility="gone"
         />
 
-    <!--android:visibility="gone"-->
 
     <ImageView
         android:id="@+id/ctitle_ivAdd"
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:src="@drawable/icon_add" />
+        android:src="@drawable/icon_add"
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/ctitle_tvLeft"
@@ -48,7 +49,8 @@
         android:textSize="18sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <!--android:visibility="gone"-->
+        android:layout_alignParentStart="true"
+        android:visibility="gone"/>
+
         />
 </RelativeLayout>
