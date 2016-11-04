@@ -66,7 +66,7 @@ import cn.ucai.superwechat.widget.DMTabHost;
 import cn.ucai.superwechat.widget.MFViewPager;
 
 @SuppressLint("NewApi")
-public class MainActivity extends BaseActivity  {
+public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedChangeListener,ViewPager.OnPageChangeListener {
 
     protected static final String TAG = "MainActivity";
     //	// textview for unread message count
@@ -211,15 +211,17 @@ public class MainActivity extends BaseActivity  {
         tvTextview.setVisibility(View.VISIBLE);
         ivAdd.setVisibility(View.VISIBLE);
         adpter = new MainTabAdpter(getSupportFragmentManager());
+        adpter.clear();
         layoutViewpager.setAdapter(adpter);
         layoutViewpager.setOffscreenPageLimit(4);
-        adpter.clear();
         adpter.addFragment(new ConversationListFragment(), getString(R.string.chat_room));
         adpter.addFragment(new ContactListFragment(), getString(R.string.contacts));
         adpter.addFragment(new DiscoverFragment(), getString(R.string.discover));
         adpter.addFragment(new SettingsFragment(), getString(R.string.me));
         adpter.notifyDataSetChanged();
         layoutTabhost.setChecked(0);
+        layoutTabhost.setOnCheckedChangeListener(this);
+        layoutViewpager.setOnPageChangeListener(this);
     }
 
     EMMessageListener messageListener = new EMMessageListener() {
@@ -318,6 +320,29 @@ public class MainActivity extends BaseActivity  {
             }
         };
         broadcastManager.registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        layoutTabhost.setChecked(position);
+        layoutViewpager.setCurrentItem(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    public void onCheckedChange(int checkedPosition, boolean byUser) {
+        layoutViewpager.setCurrentItem(checkedPosition,false);
+
+
     }
 
     public class MyContactListener implements EMContactListener {
