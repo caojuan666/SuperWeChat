@@ -139,4 +139,6 @@ public class EaseUserUtils {
     public static void setAppUserName(String suffix, String userName, TextView currentAppUserName) {
         currentAppUserName.setText(suffix+userName);
     }
+
+
 }
