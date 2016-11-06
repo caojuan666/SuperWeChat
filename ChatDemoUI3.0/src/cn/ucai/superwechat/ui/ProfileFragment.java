@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.utils.MFGT;
 
 /**
  * Created by Administrator on 2016/11/4 0004.
@@ -51,7 +52,7 @@ public class ProfileFragment extends Fragment {
     private void setUserInfo() {
         EaseUserUtils.setCurrentAppAvater(getActivity(),ivProfileDefaultAvatar);
         EaseUserUtils.setCurrentAppNickName(tvProfileUsernick);
-        EaseUserUtils.setCurrentAppUserName(tvProfileUsername);
+        EaseUserUtils.setCurrentAppUserNameWith(tvProfileUsername);
 
     }
 
@@ -59,11 +60,13 @@ public class ProfileFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_profile_user:
+                MFGT.gotoUserProfile(getActivity());
                 break;
             case R.id.tv_profile_money:
                 RedPacketUtil.startChangeActivity(getActivity());
                 break;
             case R.id.tv_profile_setting:
+                MFGT.gotoSetting(getActivity());
                 break;
         }
     }
