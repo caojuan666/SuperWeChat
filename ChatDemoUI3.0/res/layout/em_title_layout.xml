@@ -38,6 +38,14 @@
         android:src="@drawable/icon_add"
         android:visibility="gone"
         />
+    <TextView
+        android:id="@+id/ctitle_tvRight"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+       android:text="@string/button_search"
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/ctitle_tvLeft"
@@ -52,5 +60,5 @@
         android:layout_alignParentStart="true"
         android:visibility="gone"/>
 
-        />
+
 </RelativeLayout>
