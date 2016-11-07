@@ -232,7 +232,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         mTitlePopup = new TitlePopup(this, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mTitlePopup.addAction(new ActionItem(this, R.string.menu_groupchat, R.drawable.icon_menu_group));
         mTitlePopup.addAction(new ActionItem(this, R.string.menu_addfriend, R.drawable.icon_menu_addfriend));
-        mTitlePopup.addAction(new ActionItem(this, R.string.menu_qrcode, R.drawable.icon_qunliao));
+        mTitlePopup.addAction(new ActionItem(this, R.string.menu_qrcode, R.drawable.icon_menu_sao));
         mTitlePopup.addAction(new ActionItem(this, R.string.menu_money, R.drawable.icon_menu_money));
         mTitlePopup.setItemOnClickListener(mOnItemOnClickListener);
     }
