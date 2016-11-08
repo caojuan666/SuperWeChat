@@ -11,7 +11,7 @@
         android:id="@+id/rl"
         android:layout_below="@id/inL"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
 <ImageView
@@ -38,6 +38,7 @@
         android:visibility="gone"
         />
     <TextView
+        android:id="@+id/tv_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -45,5 +46,29 @@
         android:text="设置备注和标签"
         />
     </RelativeLayout>
-
+    <Button
+        android:layout_below="@id/rl"
+        android:layout_marginTop="10dp"
+        android:id="@+id/btton_sendMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送消息"
+        android:visibility="gone"
+        />
+    <Button
+        android:layout_below="@id/btton_sendMessage"
+        android:id="@+id/btton_play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="视频"
+        android:visibility="gone"
+        />
+    <Button
+        android:layout_below="@id/btton_play"
+        android:id="@+id/btton_add_friend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加通讯录"
+        android:visibility="gone"
+        />
 </RelativeLayout>

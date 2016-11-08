@@ -17,6 +17,7 @@ import cn.ucai.superwechat.ui.LoginActivity;
 import cn.ucai.superwechat.ui.MainActivity;
 import cn.ucai.superwechat.ui.ProfileFriendActivity;
 import cn.ucai.superwechat.ui.RegisterActivity;
+import cn.ucai.superwechat.ui.SendAddContactActivity;
 import cn.ucai.superwechat.ui.SettingsActivity;
 import cn.ucai.superwechat.ui.UserProfileActivity;
 
@@ -66,6 +67,12 @@ public class MFGT {
         Intent intent = new Intent();
         intent.setClass(context, ProfileFriendActivity.class);
         intent.putExtra(I.User.USER_NAME,user);
+        startActivity(context,intent);
+    }
+    public static void gotoAddFirentMsg(Activity context,String usename) {
+        Intent intent = new Intent();
+        intent.setClass(context, SendAddContactActivity.class);
+        intent.putExtra(I.User.USER_NAME,usename);
         startActivity(context,intent);
     }
 

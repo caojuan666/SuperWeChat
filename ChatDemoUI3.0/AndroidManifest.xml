@@ -104,6 +104,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide"
             android:windowSoftInputMode="stateVisible" />
+        <activity
+            android:name="cn.ucai.superwechat.ui.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="stateVisible" />
+
         <!-- 群组详情 -->
         <activity
             android:name="cn.ucai.superwechat.ui.GroupDetailsActivity"
@@ -274,11 +280,13 @@
             android:name="cn.ucai.superwechat.ui.SetServersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide" />
-
         <activity
-            android:name="cn.ucai.superwechat.ui.SettingsActivity"
+            android:name="cn.ucai.superwechat.ui.SendAddContactActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide" />
+
+
+
         <!-- 红包相关Activity start -->
         <!-- 发红包 -->
         <activity
