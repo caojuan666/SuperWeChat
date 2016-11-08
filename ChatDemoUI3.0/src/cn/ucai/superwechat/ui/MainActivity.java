@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 //	private TextView unreadAddressLable;
 //
 //	private Button[] mTabs;
-//	private ContactListFragment contactListFragment;
+	private ContactListFragment contactListFragment;
 //	private Fragment[] fragments;
 //	private int index;
 //	private int currentTabIndex;
@@ -101,6 +101,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
     MainTabAdpter adpter;
     TitlePopup mTitlePopup;
+    private int currentTabIndex;
 
 
     /**
@@ -114,6 +115,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.em_activity_main);
+        contactListFragment = new ContactListFragment();
         ButterKnife.bind(this);
         savePower();
         checkLogin(savedInstanceState);
@@ -223,10 +225,11 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         layoutViewpager.setAdapter(adpter);
         layoutViewpager.setOffscreenPageLimit(4);
         adpter.addFragment(new ConversationListFragment(), getString(R.string.chat_room));
-        adpter.addFragment(new ContactListFragment(), getString(R.string.contacts));
+        adpter.addFragment(contactListFragment, getString(R.string.contacts));
         adpter.addFragment(new DiscoverFragment(), getString(R.string.discover));
         adpter.addFragment(new ProfileFragment(), getString(R.string.me));
         adpter.notifyDataSetChanged();
+        currentTabIndex=0;
         layoutTabhost.setChecked(0);
         layoutTabhost.setOnCheckedChangeListener(this);
         layoutViewpager.setOnPageChangeListener(this);
@@ -331,11 +334,13 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 //                    if (conversationListFragment != null) {
 //                        conversationListFragment.refresh();
 //                    }
-//                } else if (currentTabIndex == 1) {
-//                    if(contactListFragment != null) {
-//                        contactListFragment.refresh();
-//                    }
-//                }
+//                } else
+//                顯示紅點說明你沒有閱讀
+                    if (currentTabIndex == 1) {
+                    if(contactListFragment != null) {
+                        contactListFragment.refresh();
+                    }
+                }
                 String action = intent.getAction();
                 if (action.equals(Constant.ACTION_GROUP_CHANAGED)) {
                     if (EaseCommonUtils.getTopActivity(MainActivity.this).equals(GroupsActivity.class.getName())) {
@@ -358,9 +363,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
-
+//有人加你是顯示狀態
     @Override
     public void onPageSelected(int position) {
+        currentTabIndex = position;
         layoutTabhost.setChecked(position);
         layoutViewpager.setCurrentItem(position);
     }
@@ -369,9 +375,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     public void onPageScrollStateChanged(int state) {
 
     }
-
+//
     @Override
     public void onCheckedChange(int checkedPosition, boolean byUser) {
+        currentTabIndex = checkedPosition;
         layoutViewpager.setCurrentItem(checkedPosition, false);
 
 
@@ -441,12 +448,12 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
      */
     public void updateUnreadLabel() {
         int count = getUnreadMsgCountTotal();
-//		if (count > 0) {
-//			unreadLabel.setText(String.valueOf(count));
-//			unreadLabel.setVisibility(View.VISIBLE);
-//		} else {
-//			unreadLabel.setVisibility(View.INVISIBLE);
-//		}
+		if (count > 0) {
+            layoutTabhost.setHasNew(1,true);
+		} else {
+            layoutTabhost.setHasNew(1,false);
+
+		}
     }
 
     /**
@@ -595,9 +602,9 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
             try {
                 if (accountRemovedBuilder == null)
                     accountRemovedBuilder = new AlertDialog.Builder(MainActivity.this);
-                accountRemovedBuilder.setTitle(st5);
-                accountRemovedBuilder.setMessage(R.string.em_user_remove);
-                accountRemovedBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    accountRemovedBuilder.setTitle(st5);
+                    accountRemovedBuilder.setMessage(R.string.em_user_remove);
+                    accountRemovedBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
