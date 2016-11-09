@@ -224,7 +224,7 @@ public class SuperWeChatDBManager {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         List<InviteMessage> msgs = new ArrayList<InviteMessage>();
         if(db.isOpen()){
-            Cursor cursor = db.rawQuery("select * from " + InviteMessgeDao.TABLE_NAME + "order by"+InviteMessgeDao. COLUMN_NAME_TIME+" desc",null);
+            Cursor cursor = db.rawQuery("select * from " + InviteMessgeDao.TABLE_NAME + " order by "+InviteMessgeDao.COLUMN_NAME_TIME +" desc",null);
             while(cursor.moveToNext()){
                 InviteMessage msg = new InviteMessage();
                 int id = cursor.getInt(cursor.getColumnIndex(InviteMessgeDao.COLUMN_NAME_ID));
@@ -496,6 +496,12 @@ public class SuperWeChatDBManager {
         values.put(UserDao.USER_COLUMN_AVATAR_LASTUPDATE_TIME,user.getMAvatarLastUpdateTime());
         if(db.isOpen()){
             db.replace(UserDao.USER_TABLE_NAME, null, values);
+        }
+    }
+    synchronized public void deleteAppContact(String username){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        if(db.isOpen()){
+            db.delete(UserDao.USER_TABLE_NAME, UserDao.USER_COLUMN_NAME + " = ?", new String[]{username});
         }
     }
 }

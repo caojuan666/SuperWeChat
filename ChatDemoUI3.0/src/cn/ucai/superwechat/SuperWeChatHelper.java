@@ -635,6 +635,7 @@ public class SuperWeChatHelper {
                             if(result!=null&&result.isRetMsg()){
                                User u = (User) result.getRetData();
                                 saveAppContact(u);
+                                broadcastManager.sendBroadcast(new Intent(Constant.ACTION_CONTACT_CHANAGED));
                             }
 
                         }
@@ -657,8 +658,9 @@ public class SuperWeChatHelper {
             localUsers.remove(username);
             userDao.deleteContact(username);
             inviteMessgeDao.deleteMessage(username);
-
+            SuperWeChatHelper.getInstance().delAppContact(username);
             broadcastManager.sendBroadcast(new Intent(Constant.ACTION_CONTACT_CHANAGED));
+
         }
 
 
@@ -1354,6 +1356,10 @@ public class SuperWeChatHelper {
         ArrayList<User> mList = new ArrayList<User>();
         mList.addAll(mContactList.values());
         demoModel.saveAppContactList(mList);
+    }
+    public void delAppContact(String  username){
+        getAppContactList().remove(username);
+        demoModel.delAppContact(username);
     }
 
 
