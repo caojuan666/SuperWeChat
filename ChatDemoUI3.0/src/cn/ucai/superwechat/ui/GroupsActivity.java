@@ -86,13 +86,13 @@ public class GroupsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.em_fragment_groups);
         ButterKnife.bind(this);
-        initView();
-        setListener();
 
         instance = this;
         inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         grouplist = EMClient.getInstance().groupManager().getAllGroups();
         list = (ListView) findViewById(R.id.list);
+        initView();
+        setListener();
 
 
     }
