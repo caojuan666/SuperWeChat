@@ -18,6 +18,7 @@
             android:onClick="back" >
 
             <ImageView
+                android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -27,6 +28,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -35,6 +37,7 @@
             android:textSize="20sp" />
 
         <Button
+            android:id="@+id/bttom_save"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -71,6 +74,26 @@
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
         android:textSize="18sp" />
+<LinearLayout
+    android:id="@+id/group_avater"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="14dp"
+    android:layout_marginLeft="1dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="群图标"
+        android:layout_weight="1"/>
+    <ImageView
+        android:id="@+id/iv_avater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ease_group_icon"/>
+</LinearLayout>
     
     
     <LinearLayout 
