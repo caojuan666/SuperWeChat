@@ -113,6 +113,7 @@ public abstract class EaseChatRow extends LinearLayout {
                     timestamp.setVisibility(View.VISIBLE);
                 }
             }
+
         }
         //set nickname and avatar
         if(message.direct() == Direct.SEND){

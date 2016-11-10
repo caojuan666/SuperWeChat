@@ -19,7 +19,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -107,6 +106,7 @@ public class AddContactActivity extends BaseActivity {
                     L.e(TAG, "searchAppUser.result" + result);
                     if (result != null && result.isRetMsg()) {
                         User u = (User) result.getRetData();
+                        L.e(TAG, "user:" + u);
                         if (u != null) {
                             MFGT.gotoProfileFriend(AddContactActivity.this, u);
                         }

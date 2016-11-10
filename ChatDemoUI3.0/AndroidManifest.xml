@@ -60,7 +60,6 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="cn.ucai.superwechat.ui.ProfileFriendActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide"
             android:windowSoftInputMode="adjustPan" />

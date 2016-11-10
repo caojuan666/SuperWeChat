@@ -13,24 +13,6 @@
  */
 package cn.ucai.superwechat.adapter;
 
-import java.util.List;
-
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.easeui.domain.User;
-import com.hyphenate.easeui.utils.EaseUserUtils;
-
-import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.bean.Result;
-import cn.ucai.superwechat.data.NetDao;
-import cn.ucai.superwechat.data.OkHttpUtils;
-import cn.ucai.superwechat.db.InviteMessgeDao;
-import cn.ucai.superwechat.domain.InviteMessage;
-import cn.ucai.superwechat.domain.InviteMessage.InviteMesageStatus;
-import cn.ucai.superwechat.ui.NewFriendsMsgActivity;
-import cn.ucai.superwechat.utils.CommonUtils;
-import cn.ucai.superwechat.utils.MFGT;
-import cn.ucai.superwechat.utils.ResultUtils;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -46,7 +28,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.domain.User;
+import com.hyphenate.easeui.utils.EaseUserUtils;
+
+import java.util.List;
+
+import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.data.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.db.InviteMessgeDao;
+import cn.ucai.superwechat.domain.InviteMessage;
+import cn.ucai.superwechat.domain.InviteMessage.InviteMesageStatus;
+import cn.ucai.superwechat.utils.ResultUtils;
+
 public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
+	private static final java.lang.String TAG = NewFriendsMsgAdapter.class.getSimpleName();
 
 	private Context context;
 	private InviteMessgeDao messgeDao;
@@ -110,7 +108,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
 						Result result = ResultUtils.getResultFromJson(s, User.class);
 						if(result!=null&&result.isRetMsg()){
 							User u = (User) result.getRetData();
-							EaseUserUtils.setAppUserAvatar(context,u.getAvatar(),holder.avator);
+							EaseUserUtils.setAppPathUserAvatar(context,u.getAvatar(),holder.avator);
 							EaseUserUtils.setAppUserNick(u.getMUserNick(),holder.name);
 						}
 					}

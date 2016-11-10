@@ -17,11 +17,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MFGT;
 
 
 
 public class SendAddContactActivity extends BaseActivity {
+    private static final String TAG = SendAddContactActivity.class.getSimpleName();
     @BindView(R.id.ctitle_ivback)
     ImageView ctitleIvback;
     @BindView(R.id.ctitle_tvTitle)
@@ -38,7 +40,7 @@ public class SendAddContactActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
         ButterKnife.bind(this);
-        usename=getIntent().getStringExtra(I.User.USER_NAME);
+        usename=getIntent().getStringExtra(I.User.PASSWORD);
         if(usename==null){
             MFGT.finish(this);
         }
@@ -51,6 +53,8 @@ public class SendAddContactActivity extends BaseActivity {
         ctitleTvTitle.setVisibility(View.VISIBLE);
         ctitleTvTitle.setText(getString(R.string.add_friend));
 //        send.setVisibility(View.VISIBLE);
+        L.e(TAG, "current user:" + EaseUserUtils.getCurrentAppUserInfo());
+
         msg = getString(R.string.addcontact_send_msg_prefix)
                 + EaseUserUtils.getCurrentAppUserInfo().getMUserNick();
         etMsg.setText(msg);

@@ -35,17 +35,19 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.hyphenate.chat.EMCallManager.EMCameraDataProcessor;
 import com.hyphenate.chat.EMCallManager.EMVideoCallHelper;
 import com.hyphenate.chat.EMCallStateChangeListener;
 import com.hyphenate.chat.EMClient;
-import cn.ucai.superwechat.DemoHelper;
-import cn.ucai.superwechat.R;
 import com.hyphenate.media.EMLocalSurfaceView;
 import com.hyphenate.media.EMOppositeSurfaceView;
 import com.hyphenate.util.PathUtil;
 
 import java.util.UUID;
+
+import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatHelper;
 
 public class VideoCallActivity extends CallActivity implements OnClickListener {
 
@@ -114,7 +116,7 @@ public class VideoCallActivity extends CallActivity implements OnClickListener {
         }
         setContentView(R.layout.em_activity_video_call);
         
-        DemoHelper.getInstance().isVideoCalling = true;
+        SuperWeChatHelper.getInstance().isVideoCalling = true;
         callType = 1;
         
         getWindow().addFlags(
@@ -508,7 +510,7 @@ public class VideoCallActivity extends CallActivity implements OnClickListener {
 
     @Override
     protected void onDestroy() {
-        DemoHelper.getInstance().isVideoCalling = false;
+        SuperWeChatHelper.getInstance().isVideoCalling = false;
         stopMonitor();
         if(isRecording){
             callHelper.stopVideoRecord();
