@@ -531,7 +531,7 @@ public class SuperWeChatHelper {
             Log.d(TAG, invitee + "Declined to join the group：" + group.getGroupName());
             msg.setStatus(InviteMesageStatus.GROUPINVITATION_DECLINED);
             notifyNewInviteMessage(msg);
-            broadcastManager.sendBroadcast(new Intent(Constant.ACTION_GROUP_CHANAGED));
+
         }
 
         @Override
@@ -1199,6 +1199,39 @@ public class SuperWeChatHelper {
        }
        
        isSyncingBlackListWithServer = true;
+       NetDao.loadContactList(appContext, new OkHttpUtils.OnCompleteListener<String>() {
+           @Override
+           public void onSuccess(String s) {
+               if(s!=null){
+                   Result result = ResultUtils.getListResultFromJson(s, User.class);
+                   if(result!=null&&result.isRetMsg()){
+                       List<User>  list = (List<User>) result.getRetData();
+                       if(list!=null&&list.size()>0){
+                           Map<String, User> userlist = new HashMap<String, User>();
+                           for (User user : list) {
+                               EaseCommonUtils.setAppUserInitialLetter(user);
+                               userlist.put(user.getMUserName(), user);
+                           }
+                           // save the contact list to cache
+                           getAppContactList().clear();
+                           getAppContactList().putAll(userlist);
+                           // save the contact list to database
+                           UserDao dao = new UserDao(appContext);
+                           List<User> users = new ArrayList<User>(userlist.values());
+                           dao.saveAppContactList(users);
+                           broadcastManager.sendBroadcast(new Intent(Constant.ACTION_GROUP_CHANAGED));
+
+                       }
+                   }
+               }
+
+           }
+
+           @Override
+           public void onError(String error) {
+
+           }
+       });
        
        new Thread(){
            @Override
@@ -1327,7 +1360,7 @@ public class SuperWeChatHelper {
      * save single contact
      */
     public void saveAppContact(User user){
-        mContactList.put(user.getMUserName(),user);
+        getAppContactList().put(user.getMUserName(),user);
         demoModel.saveAppContact(user);
     }
 
