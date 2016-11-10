@@ -124,11 +124,10 @@ public class GroupsActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1) {
                     // create a new group
-
-                    startActivityForResult(new Intent(GroupsActivity.this, NewGroupActivity.class), 0);
+                    MFGT.gotoNewGroup(GroupsActivity.this);
                 } else if (position == 2) {
                     // join a public group
-                    startActivityForResult(new Intent(GroupsActivity.this, PublicGroupsActivity.class), 0);
+                    MFGT.gotoPublicGroup(GroupsActivity.this);
                 } else {
                     // enter group chat
                     Intent intent = new Intent(GroupsActivity.this, ChatActivity.class);

@@ -13,7 +13,9 @@ import cn.ucai.superwechat.ui.ChatActivity;
 import cn.ucai.superwechat.ui.GroupsActivity;
 import cn.ucai.superwechat.ui.LoginActivity;
 import cn.ucai.superwechat.ui.NewFriendsMsgActivity;
+import cn.ucai.superwechat.ui.NewGroupActivity;
 import cn.ucai.superwechat.ui.ProfileFriendActivity;
+import cn.ucai.superwechat.ui.PublicGroupsActivity;
 import cn.ucai.superwechat.ui.RegisterActivity;
 import cn.ucai.superwechat.ui.SendAddContactActivity;
 import cn.ucai.superwechat.ui.SettingsActivity;
@@ -84,6 +86,14 @@ public class MFGT {
     }
     public static void gotoGroup(Activity context){
         startActivity(context, GroupsActivity.class);
+
+    }
+    public static void gotoNewGroup(Activity context){
+        startActivity(context, NewGroupActivity.class);
+
+    }
+    public static void gotoPublicGroup(Activity context){
+        startActivity(context, PublicGroupsActivity.class);
 
     }
 
