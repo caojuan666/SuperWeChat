@@ -192,10 +192,13 @@ public class EaseConversationListFragment extends EaseBaseFragment{
     /**
      * refresh ui
      */
+
     public void refresh() {
     	if(!handler.hasMessages(MSG_REFRESH)){
     		handler.sendEmptyMessage(MSG_REFRESH);
     	}
+        query.getText().clear();
+        hideSoftKeyboard();
     }
     
     /**
