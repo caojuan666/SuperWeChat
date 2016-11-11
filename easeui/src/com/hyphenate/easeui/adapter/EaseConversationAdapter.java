@@ -20,7 +20,6 @@ import com.hyphenate.chat.EMConversation.EMConversationType;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.R;
-import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
@@ -43,7 +42,8 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
     private List<EMConversation> copyConversationList;
     private ConversationFilter conversationFilter;
     private boolean notiyfyByFilter;
-    
+//    Context context;
+//
     protected int primaryColor;
     protected int secondaryColor;
     protected int timeColor;
@@ -110,8 +110,10 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
                 holder.motioned.setVisibility(View.GONE);
             }
             // group message, show group avatar
-            holder.avatar.setImageResource(R.drawable.ease_group_icon);
 
+//            holder.avatar.setImageResource(R.drawable.ease_group_icon);
+//            消息列表的头像
+            EaseUserUtils.setAppGroupAvatar(getContext(),username,holder.avatar);
 
             EMGroup group = EMClient.getInstance().groupManager().getGroup(username);
             holder.name.setText(group != null ? group.getGroupName() : username);
