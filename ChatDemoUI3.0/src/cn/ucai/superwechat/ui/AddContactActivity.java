@@ -108,7 +108,7 @@ public class AddContactActivity extends BaseActivity {
                         User u = (User) result.getRetData();
                         L.e(TAG, "user:" + u);
                         if (u != null) {
-                            MFGT.gotoProfileFriend(AddContactActivity.this, u);
+                            MFGT.gotoProfileFriend(AddContactActivity.this, u.getMUserName());
                         }
                     } else {
                         CommonUtils.showShortToast(R.string.msg_104);
