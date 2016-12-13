@@ -69,7 +69,7 @@ public class PublicGroupsActivity extends BaseActivity {
 		pb = (ProgressBar) findViewById(R.id.progressBar);
 		listView = (ListView) findViewById(R.id.list);
 		groupsList = new ArrayList<EMGroupInfo>();
-		searchBtn = (Button) findViewById(R.id.btn_search);
+//		searchBtn = (Button) findViewById(R.id.btn_search);
 		
 		View footView = getLayoutInflater().inflate(R.layout.em_listview_footer_view, listView, false);
         footLoadingLayout = (LinearLayout) footView.findViewById(R.id.loading_layout);
