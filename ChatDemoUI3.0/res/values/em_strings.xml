@@ -89,6 +89,7 @@
     <string name="chat_room">Live room</string>
     <string name="add_friend">Add friends</string>
     <string name="search">Search</string>
+    <string name="search1">Search</string>
     <string name="black_item">Black list</string>
     <string name="diagnose">Debug</string>
     <string name="push_nick">nickname for Notification</string>

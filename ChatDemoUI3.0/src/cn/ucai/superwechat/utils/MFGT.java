@@ -6,6 +6,9 @@ import android.content.Intent;
 
 import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.live.data.model.LiveRoom;
+import cn.ucai.superwechat.live.ui.activity.LiveDetailsActivity;
+import cn.ucai.superwechat.live.ui.activity.StartLiveActivity;
 import cn.ucai.superwechat.ui.AddContactActivity;
 import cn.ucai.superwechat.ui.ChatActivity;
 import cn.ucai.superwechat.ui.GroupsActivity;
@@ -94,6 +97,26 @@ public class MFGT {
         startActivity(context, PublicGroupsActivity.class);
 
     }
+//    直播
+    public static void gotoLiveActivity(Context context, LiveRoom liveRoom){
+        Intent intent = new Intent();
+        intent.setClass(context, StartLiveActivity.class);
+        intent.putExtra("liveRoom",liveRoom);
+        startActivity(context,intent);
+
+
+    }
+//    直播
+    public static void gotoLiveDetails(Context context,LiveRoom liveRoom){
+        Intent intent = new Intent();
+        intent.setClass(context, LiveDetailsActivity.class);
+        intent.putExtra("liveRoom",liveRoom);
+        startActivity(context,intent);
+
+
+
+    }
+
 
 
 }

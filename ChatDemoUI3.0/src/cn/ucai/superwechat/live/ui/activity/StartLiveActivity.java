@@ -268,7 +268,7 @@ public class StartLiveActivity extends LiveBaseActivity
     List<LiveRoom> liveRoomList = TestDataRepository.getLiveRoomList();
     for (LiveRoom liveRoom : liveRoomList) {
       if (liveRoom.getId().equals(liveId)) {
-        coverImage.setImageResource(liveRoom.getCover());
+        coverImage.setImageResource(Integer.parseInt(liveRoom.getCover()));
       }
     }
     View view = liveEndLayout.inflate();

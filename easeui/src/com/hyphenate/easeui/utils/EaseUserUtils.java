@@ -183,7 +183,20 @@ public class EaseUserUtils {
     public static void setAppUserName(String suffix, String userName, TextView currentAppUserName) {
         currentAppUserName.setText(suffix+userName);
     }
+    public static void setLiveCover(Context context ,String hixd,ImageView imageView){
+        if(hixd==null){
 
+            try {
+                int avatarResId = Integer.parseInt(hixd);
+                Glide.with(context).load(avatarResId).into(imageView);
+            } catch (Exception e) {
+                //use default avatar
+                Glide.with(context).load(hixd).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.default_avatar).into(imageView);
+            }
+        }else{
+            Glide.with(context).load(R.drawable.default_avatar).into(imageView);
+        }
+    }
 
 
 }

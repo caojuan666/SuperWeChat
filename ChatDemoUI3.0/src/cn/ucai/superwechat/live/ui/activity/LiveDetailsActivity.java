@@ -47,7 +47,7 @@ public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.
         LiveRoom liveRoom = getIntent().getParcelableExtra("liveroom");
         liveId = liveRoom.getId();
         chatroomId = liveRoom.getChatroomId();
-        int coverRes = liveRoom.getCover();
+        int coverRes = Integer.parseInt(liveRoom.getCover());
         coverView.setImageResource(coverRes);
 
         anchorId = liveRoom.getAnchorId();

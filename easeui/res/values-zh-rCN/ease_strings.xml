@@ -85,6 +85,7 @@
     <string name="chat_room">直播间</string>
     <string name="add_friend">添加好友</string>
     <string name="search">搜索</string>
+    <string name="search1">搜索</string>
     <string name="black_item">黑名单</string>
     <string name="diagnose">诊断</string>
     <string name="push_nick">iOS离线推送昵称</string>
