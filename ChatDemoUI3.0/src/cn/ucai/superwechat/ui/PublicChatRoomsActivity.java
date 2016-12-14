@@ -55,6 +55,7 @@ import com.hyphenate.EMChatRoomChangeListener;
 import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCursorResult;
+import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.exceptions.HyphenateException;
 
 import java.io.FileDescriptor;
@@ -429,30 +430,49 @@ public class PublicChatRoomsActivity extends BaseActivity {
             final LiveViewHolder holder = new LiveViewHolder(LayoutInflater.from(context).
                     inflate(R.layout.layout_livelist_item, parent, false));
 
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final int position = holder.getAdapterPosition();
-                    if (position == RecyclerView.NO_POSITION) return;
-                    if (liveRoomList.get(position).getAnchorId().equals(SuperWeChatHelper.getInstance().getCurrentUsernName())) {
-                        MFGT.gotoLiveActivity(context,liveRoomList.get(position));
-                    } else {
-                        MFGT.gotoLiveDetails(context, liveRoomList.get(position));
-                    }
-                }
-            });
+//            holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    final int position = holder.getAdapterPosition();
+//                    if (position == RecyclerView.NO_POSITION) return;
+//                    if (liveRoomList.get(position).getAnchorId().equals(SuperWeChatHelper.getInstance().getCurrentUsernName())) {
+//                        MFGT.gotoLiveActivity(context,liveRoomList.get(position));
+//                    } else {
+//                        MFGT.gotoLiveDetails(context, liveRoomList.get(position));
+//                    }
+//                }
+//            });
             return holder;
         }
 
         @Override
-        public void onBindViewHolder(LiveViewHolder holder, int position) {
-            LiveRoom liveRoom = liveRoomList.get(position);
+        public void onBindViewHolder(final LiveViewHolder holder, int position) {
+            final LiveRoom liveRoom = liveRoomList.get(position);
             holder.anchor.setText(liveRoom.getName());
             holder.audienceNum.setText(liveRoom.getAudienceNum() + "人");
+            EaseUserUtils.setCover(context,liveRoom.getCover(),((LiveViewHolder)holder).imageView);
+
             Glide.with(context)
                     .load(liveRoomList.get(position).getLiveAvatar())
                     .placeholder(R.color.placeholder)
                     .into(holder.imageView);
+//            String userName = EMClient.getInstance().getCurrentUser();
+//            if (liveRoom.getAnchorId().equals(userName)) {
+//                MFGT.gotoLiveActivity(context,liveRoom);
+//            } else {
+//                MFGT.gotoLiveDetails(context,liveRoom);
+//            }
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String userName = EMClient.getInstance().getCurrentUser();
+            if (liveRoom.getAnchorId().equals(userName)) {
+                MFGT.gotoLiveActivity(context,liveRoom);
+            } else {
+                MFGT.gotoLiveDetails(context,liveRoom);
+            }
+                }
+            });
         }
 
         @Override

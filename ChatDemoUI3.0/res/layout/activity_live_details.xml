@@ -68,7 +68,7 @@
              android:layout_alignParentRight="true"
              android:layout_alignParentBottom="true"
              android:background="@drawable/live_selecter_room_close_button" />-->
-        <com.easemob.livedemo.ui.widget.RoomMessagesView
+        <cn.ucai.superwechat.live.ui.widget.RoomMessagesView
             android:id="@+id/message_view"
             android:layout_width="match_parent"
             android:layout_height="170dp"

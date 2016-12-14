@@ -113,9 +113,13 @@ public class StartLiveActivity extends LiveBaseActivity
   protected void onActivityCreate(@Nullable Bundle savedInstanceState) {
     setContentView(R.layout.activity_start_live);
     ButterKnife.bind(this);
-
-    liveId = TestDataRepository.getLiveRoomId(EMClient.getInstance().getCurrentUser());
-    chatroomId = TestDataRepository.getChatRoomId(EMClient.getInstance().getCurrentUser());
+    LiveRoom liveRoom = getIntent().getParcelableExtra("liveroom");
+    if(liveRoom==null){
+      finish();
+      return;
+    }
+    liveId = liveRoom.getId();//TestDataRepository.getLiveRoomId(EMClient.getInstance().getCurrentUser());
+    chatroomId = liveRoom.getChatroomId();//TestDataRepository.getChatRoomId(EMClient.getInstance().getCurrentUser());
     anchorId = EMClient.getInstance().getCurrentUser();
     usernameView.setText(anchorId);
     initEnv();

@@ -48,9 +48,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+
         android:name="cn.ucai.superwechat.SuperWeChatApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:theme="@style/horizontal_slide"
         android:label="@string/app_name">
         <activity
             android:name="cn.ucai.superwechat.ui.MainActivity"
@@ -490,28 +492,26 @@
             android:value="3ecea51f560650b1ed8a4b99808f52e8" />
 
         <activity android:name=".ui.GuideActivity">
-        <activity
-            android:name=".live.ui.activity.StartLiveActivity"
-
-            android:screenOrientation="portrait">
-            <!--观看直播的页面-->
-            <activity
-                android:name=".live.ui.activity.LiveDetailsActivity"
-
-                android:screenOrientation="portrait"
-                >
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".ui.activity.MainActivity" />
-            </activity>
-
         </activity>
-
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <!--观看直播的页面-->
+        <activity
+            android:name="cn.ucai.superwechat.live.ui.activity.StartLiveActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+
+            android:name="cn.ucai.superwechat.live.ui.activity.LiveDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat"
+
+            >
+        </activity>
     </application>
 
 </manifest>

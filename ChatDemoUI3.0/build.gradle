@@ -29,7 +29,7 @@ android {
 
     defaultConfig {
         applicationId "cn.ucai.superwechat"
-        minSdkVersion 11
+        minSdkVersion 14
         targetSdkVersion 22
         multiDexEnabled true
     }
